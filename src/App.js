@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import { GlobalProvider } from "./context/GlobalState"
+
+import TaskList from "./componentes/TaskList";
+import TaskForm from "./componentes/TaskForm";
+import Heading from "./componentes/Heading";
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+      <div className="h-screen text-white text-center p-10">
+        <div className="container mx-auto h-full">
+          <Heading />
+          <Routes>
+            <Route path="/" element={<TaskList />} />
+            <Route path="/add" element={<TaskForm />} />
+            <Route path="/edit/:id" element={<TaskForm />} />
+          </Routes>
+        </div>
+      </div>
+    </GlobalProvider>
   );
 }
 
